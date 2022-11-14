@@ -8,7 +8,6 @@ public class AddressBook {
 
         public void addContact() {
 
-
                 System.out.println("Enter the Contact Details :-");
                 System.out.println("Enter the First Name :");
                 contacts.setFirstName(sc.next());
@@ -32,11 +31,9 @@ public class AddressBook {
         }
 
         public void editContact() {
-                //Get First Name to Edit the Contact
                 System.out.println("Enter the First Name : ");
                 String firstName = sc.next();
 
-                //check if the Given User with First Name
                 if (!firstName.equalsIgnoreCase(contacts.getFirstName())) {
                         System.out.println("The Entered Contact Name is Not Available in Address Book");
                 } else {
@@ -56,9 +53,17 @@ public class AddressBook {
                         contacts.setPhoneNumber(sc.nextLong());
                         System.out.println("Enter the Zip Code :");
                         contacts.setZipCode(sc.nextInt());
-
-
                 }
+        }
+        public void deleteContact(ContactPerson contacts) {
+                contacts.setFirstName(null);
+                contacts.setLastName(null);
+                contacts.setEmailID(null);
+                contacts.setAddress(null);
+                contacts.setCity(null);
+                contacts.setPhoneNumber(0);
+                contacts.setZipCode(0);
+                displayContact(contacts);
         }
         public void displayContact (ContactPerson contacts){
                         System.out.println(contacts);
