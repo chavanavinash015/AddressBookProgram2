@@ -25,7 +25,10 @@ public class AddressBook {
             System.out.println("Enter the PIN Code :");
             contacts.setZipCode(sc.nextInt());
             System.out.println("Contacts Added Successfully");
+            displayContact(contacts);
 
-
+    }
+    public void displayContact(ContactPerson contacts){
+            System.out.println(contacts);
     }
 }
