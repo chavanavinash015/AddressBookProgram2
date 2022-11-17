@@ -10,6 +10,7 @@ public class ContactPerson {
    private long phoneNumber;
    private int zipCode;
 
+   private String addressBookName;
 
     public String getFirstName() {
         return firstName;
@@ -73,6 +74,14 @@ public class ContactPerson {
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getAddressBookName() {
+        return addressBookName;
+    }
+
+    public void setAddressBookName(String addressBookName) {
+        this.addressBookName = addressBookName;
     }
 
     @Override

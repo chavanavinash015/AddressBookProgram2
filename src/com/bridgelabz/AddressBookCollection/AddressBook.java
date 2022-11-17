@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-        ArrayList<ContactPerson> addressBook = new ArrayList<>();
+
         Scanner sc = new Scanner(System.in);
         ContactPerson contacts = new ContactPerson();
 
-        public void manageAddressBook() {
+        public void manageAddressBook(String addressBook, ArrayList<ContactPerson> contactList) {
                 int choice = 0;
                 do {
                         do {
@@ -26,16 +26,16 @@ public class AddressBook {
                         } while (!(choice >= 1 && choice <= 5));
                         switch (choice) {
                                 case 1:
-                                        addContact();
+                                        addContact(contactList);
                                         break;
                                 case 2:
-                                        editContact();
+                                        editContact(contactList);
                                         break;
                                 case 3:
-                                        deleteContact();
+                                        deleteContact(contactList);
                                         break;
                                 case 4:
-                                        displayAddressBook();
+                                        displayAddressBook(addressBook, contactList);
                                         break;
                                 case 5:
                                         System.out.println("Exit");
@@ -45,10 +45,10 @@ public class AddressBook {
                 } while (choice != 5);
         }
 
-        public ContactPerson getContactsToModify(String name) {
+        public ContactPerson getContactsToModify(String name, ArrayList<ContactPerson> contactList) {
                 ContactPerson contact = null;
-                for (int i = 0; i < addressBook.size(); i++) {
-                        ContactPerson temp = addressBook.get(i);
+                for (int i = 0; i < contactList.size(); i++) {
+                        ContactPerson temp = contactList.get(i);
                         if (name.equalsIgnoreCase(temp.getFirstName())) {
                                 contact = temp;
                         }
@@ -57,7 +57,7 @@ public class AddressBook {
 
         }
 
-        public void addContact() {
+        public void addContact(ArrayList<ContactPerson> contactList) {
 
                 System.out.println("Enter the Contact Details :-");
                 System.out.println("Enter the First Name :");
@@ -77,26 +77,25 @@ public class AddressBook {
                 System.out.println("Enter the PIN Code :");
                 contacts.setZipCode(sc.nextInt());
                 System.out.println("Contacts Added Successfully");
-                addressBook.add(contacts);
+                contactList.add(contacts);
 
         }
 
-        @Override
-        public String toString() {
+        public String toString(ArrayList<ContactPerson> contactList) {
                 return "AddressBook{" +
-                        "addressBook=" + addressBook +
+                        "addressBook=" + contactList +
                         ", sc=" + sc +
                         ", contacts=" + contacts +
                         '}';
         }
 
-        public void editContact() {
+        public void editContact(ArrayList<ContactPerson> contactList) {
                 System.out.println("Enter the First Name for edit Contact");
                 String firstName = sc.next();
-                for (int i = 0; i < addressBook.size(); i++) {
-                        if (addressBook.get(i).getFirstName().equalsIgnoreCase(firstName)) {
-                                addressBook.remove(i);
-                                addContact();
+                for (int i = 0; i < contactList.size(); i++) {
+                        if (contactList.get(i).getFirstName().equalsIgnoreCase(firstName)) {
+                               contactList.remove(i);
+                                addContact(contactList);
                         } else {
                                 System.out.println("data not found ");
                         }
@@ -104,37 +103,28 @@ public class AddressBook {
                 sc.close();
         }
 
-        public void deleteContact() {
+        public void deleteContact(ArrayList<ContactPerson> contactList) {
                 ContactPerson contact = null;
                 String name = null;
 
                 System.out.print("\nEnter the First Name of the contact you want to delete : ");
                 name = sc.next();
                 while (contact == null) {
-                        contact = getContactsToModify(name);
+                        contact = getContactsToModify(name, contactList);
                         if (contact == null) {
                                 System.out.println("\nNo such entry exists!\nPlease enter a valid First Name.");
                                 name = sc.next();
-                                contact = getContactsToModify(name);
+                                contact = getContactsToModify(name, contactList);
                         }
                 }
-                addressBook.remove(contact);
+                contactList.remove(contact);
         }
 
-        public void addMultipleContact() {
-                System.out.println("enter number of contacts");
-                int numofAddressBook = sc.nextInt();
-                int  person = 1;
-                while( person <= numofAddressBook){
-                        addContact();
-                        person++;
-                }
 
-        }
-        public void displayAddressBook() {
-                System.out.println("\n\n------- Address Book -------");
-                for (int i = 0; i < addressBook.size(); i++)
-                        System.out.println("\n"+addressBook.get(i));
+        public void displayAddressBook(String addressbook, ArrayList<ContactPerson> contactList) {
+                System.out.println("Display  Address Book -------");
+                for (int i = 0; i < contactList.size(); i++)
+                        System.out.println("\n"+contactList.get(i));
                 System.out.println();
         }
         public void displayContact (){
