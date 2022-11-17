@@ -6,8 +6,8 @@ public class AddressBookMain {
 
         System.out.println("Welcome to the Address Book Program ");
 
-        AddressBook addressBook = new AddressBook();
-        addressBook.manageAddressBook();
+        AddressBookMultiple addressBook = new AddressBookMultiple();
+        addressBook.manageAddressBookList();
 
 
     }
